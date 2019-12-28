@@ -14,7 +14,7 @@ Follow up:
 Could you solve it with constant space complexity? (The output array does not count as extra space for the purpose of space complexity analysis.)
  */
 /*
-We can do this in 2 pass 
+We can do this in 2 pass
 a        b        c         d
 
 1        a        ab        abc ---> ret[i-1]*nums[i-1]
