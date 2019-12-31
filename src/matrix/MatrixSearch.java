@@ -22,7 +22,7 @@ Given target = 20, return false.
  */
 /*
 Solution:
-1. initialize col to matrix[0].length -1 and row to 0
+1. initialize col to matrix[0].length -1 and row to 0 (trick)
 2. if target < matrix[row][col] move left
 3. if target > matrix[row][col] move down
 4. Do 2 and 3 till we find the target, return if we hit the matrix boundary.
