@@ -1,5 +1,9 @@
 package stack;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Stack;
+
 /*
 https://leetcode.com/problems/valid-parentheses/
 Given a string containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
