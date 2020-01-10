@@ -3,6 +3,7 @@ package BruteForce;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Arrays;
 /*
 https://leetcode.com/problems/remove-invalid-parentheses/
 Remove the minimum number of invalid parentheses in order to make the input string valid. Return all possible results.
