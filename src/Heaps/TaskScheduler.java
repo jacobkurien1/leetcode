@@ -3,7 +3,7 @@ package Heaps;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
 import java.util.Queue;
-
+import java.util.Arrays;
 /*
 https://leetcode.com/problems/task-scheduler/
 Given a char array representing tasks CPU need to do.
@@ -81,4 +81,36 @@ public class TaskScheduler {
     /*
     Algo1: end
      */
+
+    /*
+    Algo2(Optimized): Draw the grid. Find the highest freq element and then we will have atmost (highFreq-1)*n idlespots.
+    Now calculate the number of elements that could be filled in these idle spots.
+    Take a max of idlespots and the number of elements that needs to be filled.
+    Also increment the number of intervals needed when you encounter an element which has same frequency as the highest freq element
+
+    Running time is O(Max(26)+total number of tasks)
+    Space needed is O(1) as we might need atmost 26 spaces
+     */
+    public int leastIntervalAlog2(char[] tasks, int n) {
+        int[] taskFreq = new int[26];
+        for(char task : tasks){
+            taskFreq[task - 'A']++;
+        }
+        Arrays.sort(taskFreq);
+        if(taskFreq[25] == 0){
+            return 0;
+        }
+        //get the max and add the idle slots
+        int minInterval = taskFreq[25];
+        int maxIdleSpots = (taskFreq[25] - 1)*n;
+        int numOfElementsLeft = 0;
+        for(int i = 24; i>=0 && taskFreq[i]!= 0; i--){
+            if(taskFreq[i] == taskFreq[25]){
+                minInterval++;
+                taskFreq[i]--;
+            }
+            numOfElementsLeft += taskFreq[i];
+        }
+        return minInterval + Math.max(maxIdleSpots, numOfElementsLeft);
+    }
 }
