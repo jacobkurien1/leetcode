@@ -1,4 +1,4 @@
-package Arrays;
+package ArraysProblem;
 
 /*
 https://leetcode.com/problems/next-permutation/
