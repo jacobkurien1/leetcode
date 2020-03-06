@@ -1,4 +1,4 @@
-package ArraysProblem;
+package Search;
 
 /*
 https://leetcode.com/problems/missing-element-in-sorted-array/
@@ -32,11 +32,13 @@ Note:
 1 <= A[i] <= 1e7
 1 <= K <= 1e8
  */
-/*
-Running time is O(n)
-Space is O(1)
- */
+
 public class KthMissingElement {
+    /*
+    Algo1: Checking all the
+    Running time is O(n)
+    Space is O(1)
+     */
     public int missingElement(int[] nums, int k) {
         if(nums.length ==0){
             return k;
@@ -51,4 +53,37 @@ public class KthMissingElement {
         }
         return nums[nums.length-1] + k;
     }
+
+
+    /*
+    Use binary search
+    Running time O(log(n))
+    Space is O(1)
+     */
+    public int missingElementOptimal(int[] nums, int k) {
+        if(nums.length ==0){
+            return k;
+        }
+        int missingNumsCount = nums[nums.length-1] - nums[0] - (nums.length-1);
+        if (missingNumsCount<k){
+            return nums[nums.length-1] + (k-missingNumsCount);
+        }
+        int l = 0;
+        int r = nums.length-1;
+        while(l<r){
+            int mid = l + (int)Math.ceil((r-l)/2.0);
+            missingNumsCount = nums[mid] - nums[l] -(mid-l);
+            if(missingNumsCount <k){
+                //go right
+                k -= missingNumsCount;
+                l = mid;
+            } else {
+                // go left
+                r = mid-1;
+            }
+        }
+        return nums[l] + k;
+    }
 }
+
+
