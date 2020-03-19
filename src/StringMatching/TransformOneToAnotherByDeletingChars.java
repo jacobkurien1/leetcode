@@ -36,6 +36,7 @@ public class TransformOneToAnotherByDeletingChars {
 
     /*
     Algo: optimal
+    This is a greedy approach and a variation on the KMP string matching algorithm
     Running time is O(source.length + target.length())
     source.length to create the charNext table
     target.length while doing the character matches
