@@ -22,29 +22,24 @@ Running time is O(n)
 space needed is also O(n)
  */
 public class DiameterOfTree {
-    int diameter = 0;
+    int maxDiameter = 0;
     public int diameterOfBinaryTree(TreeNode root) {
         if( root == null){
             return 0;
         }
-        getDepth(root);
-        return diameter;
+        maxLenAndDiameter(root);
+        return maxDiameter;
 
     }
-    int getDepth(TreeNode n){
-        if(n.left == null && n.right == null){
+    int maxLenAndDiameter(TreeNode root){
+        if(root == null){
             return 0;
         }
-        int leftDepth = 0;
-        int rightDepth = 0;
-        if (n.left != null) {
-            leftDepth = getDepth(n.left) +1;
-        }
-        if (n.right != null){
-            rightDepth = getDepth(n.right) +1;
-        }
-        diameter = Math.max(diameter, leftDepth + rightDepth );
-        return Math.max(leftDepth, rightDepth);
+        int left = maxLenAndDiameter(root.left);
+        int right = maxLenAndDiameter(root.right);
+        maxDiameter = Math.max(maxDiameter, left+right);
+        return Math.max(left, right) +1;
+    }
     }
 
     class TreeNode {
