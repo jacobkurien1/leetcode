@@ -29,7 +29,7 @@ After running your function, the 2D grid should be:
  */
 /*
 Running time is O(n*m)
-Space needed is O(n*m) 
+Space needed is O(n*m)
  */
 public class ShortestDistanceFromGates {
     public void wallsAndGates(int[][] rooms) {
