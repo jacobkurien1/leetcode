@@ -40,7 +40,6 @@ public class DiameterOfTree {
         maxDiameter = Math.max(maxDiameter, left+right);
         return Math.max(left, right) +1;
     }
-    }
 
     class TreeNode {
         int val;
