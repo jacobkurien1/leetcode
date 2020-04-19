@@ -19,13 +19,33 @@ Input:
 Output: 7
 Explanation: Because the path 1→3→1→1→1 minimizes the sum.
  */
-/*
-Running time O(n*m)
-Space needed is O(m)
-
-We can have space as O(1) if we use the grid to store the minpathsum.
- */
 public class MinPathMatrix {
+    /*
+    Algo : use the input grid to store the results
+    Running time is O(n*m)
+    Space needed is O(1)
+     */
+    public int minPathSumOptimized(int[][] grid) {
+        if(grid.length == 0){
+            return 0;
+        }
+        for(int row = 0; row<grid.length; row++){
+            for(int col = 0; col<grid[0].length; col++){
+                if(row != 0 || col != 0){
+                    grid[row][col] += Math.min(((row==0)?Integer.MAX_VALUE:grid[row-1][col]),
+                            ((col == 0)?Integer.MAX_VALUE:grid[row][col-1]));
+                }
+            }
+        }
+        return grid[grid.length-1][grid[0].length-1];
+    }
+
+    /*
+    Running time O(n*m)
+    Space needed is O(m)
+
+    We can have space as O(1) if we use the grid to store the minpathsum.
+     */
     public int minPathSum(int[][] grid) {
         if(grid.length == 0){
             return 0;
