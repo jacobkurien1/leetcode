@@ -42,51 +42,41 @@ Space is O(n+m) to store all the values in the hashmap
  */
 public class AllAnagramsInString {
     public List<Integer> findAnagrams(String s, String p) {
-        List<Integer> anagrams = new ArrayList<Integer>();
-        if(s.length() == 0 || p.length()== 0 || s.length()< p.length()){
-            return anagrams;
+        List<Integer> ret = new ArrayList<>();
+        if(s == null || p == null|| s.length() == 0|| p.length() == 0){
+            return ret;
         }
         HashMap<Character, Integer> hm = new HashMap<>();
-        for(int i = 0; i<p.length(); i++){
-            hm.put(p.charAt(i), hm.getOrDefault(p.charAt(i), 0)+1);
+        for(int i =0; i<p.length();i++){
+            int freq = hm.getOrDefault(p.charAt(i), 0);
+            hm.put(p.charAt(i), freq+1);
         }
+        int distinctChars = hm.size();
 
-        int diff = p.length();
         int st = 0; int end = 0;
-        while(end<p.length()){
-            hm.put(s.charAt(end), hm.getOrDefault(s.charAt(end), 0)-1);
-            if(hm.get(s.charAt(end))>=0){
-                diff--;
-            } else {
-                diff++;
-            }
-            end++;
-        }
-        if(diff == 0){
-            anagrams.add(st);
-        }
         while(end<s.length()){
-            char toRemove = s.charAt(st);
-            char toAdd = s.charAt(end);
-            hm.put(toRemove, hm.get(toRemove)+1);
-            if(hm.get(toRemove) <= 0){
-                diff--;
-            } else {
-                diff++;
+            if(end-st >=p.length()){
+                if(hm.containsKey(s.charAt(st))){
+                    int freq  = hm.get(s.charAt(st));
+                    if(freq == 0){
+                        distinctChars++;
+                    }
+                    hm.put(s.charAt(st), freq+1);
+                }
+                st++;
             }
-
-            hm.put(toAdd, hm.getOrDefault(toAdd, 0)-1);
-            if(hm.get(toAdd) >=0){
-                diff--;
-            } else {
-                diff++;
+            if(hm.containsKey(s.charAt(end))){
+                int freq = hm.get(s.charAt(end));
+                if(freq -1 == 0){
+                    distinctChars--;
+                    if(distinctChars == 0){
+                        ret.add(st);
+                    }
+                }
+                hm.put(s.charAt(end), freq-1);
             }
-            st++;
             end++;
-            if(diff == 0){
-                anagrams.add(st);
-            }
         }
-        return anagrams;
+        return ret;
     }
 }
