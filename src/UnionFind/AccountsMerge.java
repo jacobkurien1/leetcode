@@ -29,7 +29,7 @@ The length of accounts[i] will be in the range [1, 10].
 The length of accounts[i][j] will be in the range [1, 30].
  */
 /*
-Running time is O(AlogA + alpha(A)) == O(AlogA) AlogA due to sorting requirement alph(A) due to union find with path compression and rank optimization
+Running time is O(AlogA + A*alpha(A)) == O(AlogA) AlogA due to sorting requirement alph(A) due to union find with path compression and rank optimization
 Space needed is O(A) where A = all emails given
  */
 public class AccountsMerge {

@@ -1,9 +1,9 @@
-package Trees;
+package stack;
 
 import java.util.Stack;
 
 /*
-https://leetcode.com/problems/binary-search-tree-iterator
+https://leetcode.com/problems/binary-search-tree-iterator/
 Implement an iterator over a binary search tree (BST). Your iterator will be initialized with the root node of a BST.
 
 Calling next() will return the next smallest number in the BST.
@@ -32,8 +32,8 @@ next() and hasNext() should run in average O(1) time and uses O(h) memory, where
 You may assume that next() call will always be valid, that is, there will be at least a next smallest number in the BST when next() is called.
  */
 /*
-Running time Amortized = o(1)
-Space needed can be O(n) for a skewed Binary search tree
+Running time for next and hasNext is O(1) amortized
+Space needed is O(h) where h is the height of the tree, O(N) in case of a skewed tree
  */
 public class BSTIterator {
     Stack<TreeNode> st = new Stack<>();
