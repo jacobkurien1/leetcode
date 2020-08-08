@@ -21,7 +21,7 @@ The values of preorder are distinct.
  */
 /*
 Running time is O(n)
-Space needed is O(n)
+Space needed is O(n)    
  */
 public class BstFromPreorder {
     int index = 0;
