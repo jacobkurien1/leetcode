@@ -1,0 +1,5 @@
+package Search;
+
+class MaxFictionBooksSaleTest {
+
+}
