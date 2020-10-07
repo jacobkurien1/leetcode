@@ -95,6 +95,7 @@ public class ReverseNodesInKGroup {
     }
 
     class ListNode {
+        ListNode(){ }
         ListNode(int val){
             this.val = val;
         }
