@@ -1,7 +1,6 @@
 package Trees;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 /*
 https://leetcode.com/problems/find-leaves-of-binary-tree/
@@ -42,33 +41,29 @@ Explanation:
  */
 /*
 Running time is O(n)
-space is O(n)
+space is O(n) for a skewed tree
  */
 public class CollectLeavesAtAllLevels {
     public List<List<Integer>> findLeaves(TreeNode root) {
-        HashMap<Integer, List<Integer>> hm = new HashMap<>();
-        collectLeaves(root, hm);
-        List<List<Integer>> leavesInLevel = new ArrayList<>();
-        int level = 1;
-        while(hm.getOrDefault(level, null)!=null){
-            leavesInLevel.add(hm.get(level));
-            level++;
-        }
-        return leavesInLevel;
+        traverse(root);
+        return ret;
     }
 
-    int collectLeaves(TreeNode n, HashMap<Integer, List<Integer>> hm){
+    List<List<Integer>> ret = new ArrayList<>();
+
+    int traverse(TreeNode n){
         if(n == null){
             return 0;
         }
-        int left = collectLeaves(n.left, hm);
-        int right = collectLeaves(n.right, hm);
-        int whenNodeBecomesLeaf = Math.max(left, right)+1;
-        List<Integer> treeLevel = hm.getOrDefault(whenNodeBecomesLeaf, new ArrayList<Integer>());
-        treeLevel.add(n.val);
-        hm.put(whenNodeBecomesLeaf, treeLevel);
-        return whenNodeBecomesLeaf;
+        int maxDepth = traverse(n.left);
+        maxDepth = Math.max(maxDepth, traverse(n.right));
+        if(ret.size()==maxDepth){
+            ret.add(new ArrayList<>());
+        }
+        ret.get(maxDepth).add(n.val);
+        return ++maxDepth;
     }
+
     class TreeNode {
         int val;
         TreeNode left;
